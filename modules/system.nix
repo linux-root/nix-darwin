@@ -30,7 +30,7 @@
         show-recents = false;
         launchanim = true;
         mouse-over-hilite-stack = true;
-        orientation = "bottom";
+        orientation = "right";
         tilesize = 48;
       };
       
