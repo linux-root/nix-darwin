@@ -1,0 +1,5 @@
+result
+
+# Keep your private remote builder config out of the public repo.
+# Copy remote-builder.example.nix to remote-builder.nix locally and customize it.
+modules/remote-builder.nix
