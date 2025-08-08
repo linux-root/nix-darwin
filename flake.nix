@@ -49,11 +49,10 @@
       modules = [
         configuration
         ./modules/users.nix
-        ./modules/remote-builder.nix
         ./modules/apps.nix
         ./modules/system.nix
         ./modules/nix-core.nix
-      ];
+      ] ++ nixpkgs.lib.optional (builtins.pathExists ./modules/remote-builder.nix) ./modules/remote-builder.nix;
     };
   };
 }
