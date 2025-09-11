@@ -16,9 +16,15 @@
 
     # activationScripts are executed every time you boot the system or run `nixos-rebuild` / `darwin-rebuild`.
     activationScripts.postActivation.text = ''
+      # Apply per-user trackpad gesture settings
+      sudo -u ${localUsername} defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerVertSwipeGesture -int 2
+      sudo -u ${localUsername} defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerVertSwipeGesture -int 2
+      sudo -u ${localUsername} defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool false
+
       # Refresh UI components that read defaults
       killall Dock || true
       killall Finder || true
+      killall SystemUIServer || true
     '';
 
     defaults = {
@@ -45,8 +51,9 @@
       
       # Trackpad preferences
       trackpad = {
-        Clicking = true;
-        TrackpadThreeFingerDrag = true;
+        Clicking = false;
+        TrackpadThreeFingerDrag = false;               # disable drag to free three-finger swipe
+        TrackpadRightClick = true;
       };
       
       # NSGlobalDomain preferences
@@ -57,8 +64,10 @@
         InitialKeyRepeat = 15;
         NSAutomaticCapitalizationEnabled = false;
         NSAutomaticSpellingCorrectionEnabled = false;
+        AppleEnableSwipeNavigateWithScrolls = true;    # two-finger swipe to navigate
+        "com.apple.swipescrolldirection" = true;      # natural scrolling
       };
-      
+
       # Security preferences
       screencapture.location = "~/Desktop";
       screensaver.askForPasswordDelay = 10;
