@@ -17,6 +17,14 @@
     # Add Linux-specific aliases here if needed
   };
 
+  # Ensure Nix is sourced in zsh (critical for standalone home-manager on Linux)
+  programs.zsh.profileExtra = ''
+    # Source Nix profile
+    if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then
+      . ~/.nix-profile/etc/profile.d/nix.sh
+    fi
+  '';
+
   # Activation script to remind user about setting zsh as default shell
   home.activation.checkZshShell = config.lib.dag.entryAfter ["writeBoundary"] ''
     ZSH_PATH="${pkgs.zsh}/bin/zsh"
