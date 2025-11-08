@@ -44,9 +44,18 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
+    # Powerlevel10k - installed via Nix for all platforms
+    plugins = [
+      {
+        name = "powerlevel10k";
+        src = pkgs.zsh-powerlevel10k;
+        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+      }
+    ];
+
     oh-my-zsh = {
       enable = true;
-      theme = "sorin";
+      theme = "";  # Empty theme since we're using Powerlevel10k
       plugins = [
         "scala"
         "docker"
@@ -66,20 +75,20 @@
     historySubstringSearch.enable = true;
     defaultKeymap = "emacs";
 
-    initExtraFirst = ''
-      # Enable caching for compinit
-      zstyle ':completion:*' use-cache on
-      zstyle ':completion:*' cache-path ~/.zsh/cache
+    initContent = pkgs.lib.mkMerge [
+      (pkgs.lib.mkBefore ''
+        # Enable caching for compinit
+        zstyle ':completion:*' use-cache on
+        zstyle ':completion:*' cache-path ~/.zsh/cache
 
-      DISABLE_AUTO_UPDATE=true
+        DISABLE_AUTO_UPDATE=true
 
-      # Enable Powerlevel10k instant prompt
-      if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
-        source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
-      fi
-    '';
-
-    initContent = ''
+        # Enable Powerlevel10k instant prompt
+        if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
+          source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
+        fi
+      '')
+      ''
       # Useful zsh options
       setopt AUTO_CD           # cd by typing directory name
       setopt CORRECT          # spell correction
@@ -130,7 +139,8 @@
 
       # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
       [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-    '';
+    ''
+    ];
 
     shellAliases = {
       # Development tools

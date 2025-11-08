@@ -25,10 +25,4 @@
     get_idf = "source $IDF_PATH/export.sh";
     setup_clangd = "setup-esp32-clangd.sh";
   };
-
-  # macOS-specific zsh config
-  programs.zsh.initContent = ''
-    # Powerlevel10k theme (installed via Homebrew on macOS)
-    source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
-  '';
 }
