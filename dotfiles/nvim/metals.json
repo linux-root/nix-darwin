@@ -1,0 +1,8 @@
+{
+  "java": {
+    "jvmOptions": [
+      "-Xms2G",
+      "-Xmx8G"
+    ]
+  }
+}

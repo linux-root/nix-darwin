@@ -190,4 +190,11 @@
     # userName = "Your Name";  # Uncomment and set your name
     # userEmail = "your.email@example.com";  # Uncomment and set your email
   };
+
+  # Neovim configuration
+  # Symlink the entire nvim config directory
+  xdg.configFile."nvim" = {
+    source = ../dotfiles/nvim;
+    recursive = true;
+  };
 }
