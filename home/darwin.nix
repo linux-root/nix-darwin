@@ -18,7 +18,7 @@
 
   # macOS-specific aliases
   programs.zsh.shellAliases = {
-    setfont = "~/dotfiles/.config/ghostty/set_ghostty_font_size.sh";
+    setfont = "~/.config/ghostty/set_ghostty_font_size.sh";
     purpledoc = "java -jar ~/project/purpledoc/purpledoc.jar";
 
     # ESP-IDF (macOS)

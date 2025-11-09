@@ -197,4 +197,11 @@
     source = ../dotfiles/nvim;
     recursive = true;
   };
+
+  # Ghostty configuration
+  # Symlink the entire ghostty config directory
+  xdg.configFile."ghostty" = {
+    source = ../dotfiles/ghostty;
+    recursive = true;
+  };
 }
