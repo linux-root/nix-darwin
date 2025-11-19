@@ -36,7 +36,7 @@
         show-recents = false;
         launchanim = true;
         mouse-over-hilite-stack = true;
-        orientation = "right";
+        orientation = "left";
         tilesize = 48;
       };
       
@@ -69,7 +69,7 @@
       };
 
       # Security preferences
-      screencapture.location = "~/Desktop";
+      screencapture.location = "~/Pictures/screenshots";
       screensaver.askForPasswordDelay = 10;
     };
   };
