@@ -145,6 +145,8 @@
     shellAliases = {
       # Development tools
       sc = "scala-cli";
+      newscala3="sbt new linux-root/scala3.g8";
+      newscala="sbt new linux-root/scala.g8";
       vimconf = "nvim ~/.config/nvim";
       ghconf = "cd ~/.config/ghostty && vim config";
       zconf = "cd ~ && nvim .zshrc";
@@ -168,7 +170,6 @@
       # Other tools
       ff = "fastfetch";
       note = "nvim ~/Worklog/Notes";
-      scala3 = "sbt new linux-root/scala3.g8";
     };
   };
 
