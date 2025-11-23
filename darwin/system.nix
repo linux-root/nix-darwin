@@ -80,6 +80,6 @@
 
   # Basic system settings
   networking.hostName = "watson-computer";
-  time.timeZone = "America/Los_Angeles";
+  time.timeZone = "America/Chicago";
 
 }
