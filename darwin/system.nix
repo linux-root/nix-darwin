@@ -72,17 +72,17 @@
     defaults.CustomUserPreferences = {
       "com.apple.symbolichotkeys" = {
         AppleSymbolicHotKeys = {
-          "34" = {  # Capture entire screen
+          "29" = {  # Copy picture of entire screen to clipboard
             enabled = true;
             value = {
-              parameters = [ 65535 19 393216 ];  # key code 19 = "2", modifiers = Cmd+Shift
+              parameters = [ 65535 19 1179648 ];  # key code 19 = "2", modifiers = 1179648 (Cmd+Shift)
               type = "standard";
             };
           };
-          "35" = {  # Capture selected portion or window
+          "31" = {  # Copy picture of selected area to clipboard
             enabled = true;
             value = {
-              parameters = [ 65535 18 393216 ];  # key code 18 = "1", modifiers = Cmd+Shift
+              parameters = [ 65535 18 1179648 ];  # key code 18 = "1", modifiers = 1179648 (Cmd+Shift)
               type = "standard";
             };
           };
