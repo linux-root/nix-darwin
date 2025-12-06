@@ -20,11 +20,6 @@
       sudo -u ${localUsername} defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerVertSwipeGesture -int 2
       sudo -u ${localUsername} defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerVertSwipeGesture -int 2
       sudo -u ${localUsername} defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool false
-
-      # Refresh UI components that read defaults
-      killall Dock || true
-      killall Finder || true
-      killall SystemUIServer || true
     '';
 
     defaults = {
@@ -71,6 +66,28 @@
       # Security preferences
       screencapture.location = "~/Pictures/screenshots";
       screensaver.askForPasswordDelay = 10;
+    };
+
+    # Custom keyboard shortcuts for screenshots
+    defaults.CustomUserPreferences = {
+      "com.apple.symbolichotkeys" = {
+        AppleSymbolicHotKeys = {
+          "34" = {  # Capture entire screen
+            enabled = true;
+            value = {
+              parameters = [ 65535 19 393216 ];  # key code 19 = "2", modifiers = Cmd+Shift
+              type = "standard";
+            };
+          };
+          "35" = {  # Capture selected portion or window
+            enabled = true;
+            value = {
+              parameters = [ 65535 18 393216 ];  # key code 18 = "1", modifiers = Cmd+Shift
+              type = "standard";
+            };
+          };
+        };
+      };
     };
   };
 
