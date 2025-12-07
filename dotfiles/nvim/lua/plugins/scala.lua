@@ -11,7 +11,7 @@ return {
         function()
           require("metals").commands()
         end,
-        ft = { "scala", "sbt", "java" },
+        ft = { "scala", "sbt", "java", "sc" },
         desc = "Metals commands",
       },
       {
