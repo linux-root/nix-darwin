@@ -1,54 +1,40 @@
-# nix-darwin on Apple Silicon (aarch64-darwin)
+# Multi-platform Nix Configuration
 
-An opinionated, minimal nix-darwin setup you can copy. It’s clean, flake-based, and safe to publish.
+Flake-based configuration for macOS (nix-darwin), NixOS, and standalone home-manager on Linux.
 
-Highlights
-- Flake-powered (nix-command and flakes enabled)
-- aarch64-darwin host platform
-- System defaults for Dock, Finder, Trackpad, NSGlobalDomain
-- Nix maintenance: GC and store optimization on a schedule
-- Clean module layout: apps, system, nix-core, users, optional remote builder
-- Public-safe: remote builder disabled by default and kept out of Git
+## Platforms
 
-Quick start
-1) Prereqs
-   - Install Nix (multi-user recommended).
-   - Install nix-darwin: https://nix-darwin.github.io/nix-darwin/manual/
+**macOS (nix-darwin + home-manager)**
+```sh
+sudo darwin-rebuild switch --flake .#watson-computer
+```
 
-2) Build (dry run)
-   - darwin-rebuild build --flake .#watson-computer
+**Ubuntu/Linux (standalone home-manager)**
+```sh
+home-manager switch --flake .#w47s0n@ubuntu      # x86_64
+home-manager switch --flake .#w47s0n@ubuntu-arm  # aarch64
+```
 
-3) Apply (switch)
-   - sudo darwin-rebuild switch --flake .#watson-computer
+## Structure
 
-Customize
-- Username and machine
-  - localUsername is set in flake.nix and passed to modules.
-  - Hostname and timezone live in modules/system.nix.
+```
+darwin/          # macOS system modules (apps, system, nix-core, users)
+home/            # home-manager configs (common, darwin, linux)
+nixos/           # NixOS configuration (template)
+flake.nix        # Entry point with all configurations
+```
 
-- Apps and packages
-  - Add or remove packages in modules/apps.nix (environment.systemPackages).
+## Customization
 
-Remote builder (optional)
-- This repo is public-safe: the remote builder module is disabled by default and ignored in Git.
-- To enable locally:
-  - Copy the example to a private file:
-    - cp modules/remote-builder.example.nix modules/remote-builder.nix
-  - Edit flake.nix specialArgs and set:
-    - enableRemoteBuilder = true
-    - remoteBuilderString = "user@host aarch64-linux /Users/you/.ssh/id_nix 1 1"
-  - Switch:
-    - sudo darwin-rebuild switch --flake .#watson-computer
+- Usernames: `macosUsername` and `linuxUsername` in `flake.nix`
+- Packages: `darwin/apps.nix` (system) or `home/*.nix` (user)
+- macOS defaults: `darwin/system.nix`
 
-Notes on caches
-- nixConfig in flake.nix includes nix-community cache for pre-eval substituters.
-- These keys are public cache keys and safe to commit.
+## Remote Builder (optional)
 
-Why this layout
-- Simple files per concern
-- Parameterized username so defaults and scripts don’t hardcode it
-- Activation script narrows to Dock/Finder refresh instead of broad system calls
-
-Issues or ideas
-- PRs welcome! Feel free to fork and adapt. If you find better defaults or want Home Manager integrated, open an issue.
+Disabled by default. To enable:
+```sh
+cp darwin/remote-builder.example.nix darwin/remote-builder.nix
+# Edit flake.nix: enableRemoteBuilder = true
+```
 
