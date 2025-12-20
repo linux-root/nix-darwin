@@ -2,7 +2,7 @@ theme = "ayu"
 # macos-titlebar-style = "native"
 #Framer
 
-background-image = "/Users/kurro/Library/Mobile Documents/com~apple~CloudDocs/Wallpapers/octocat.jpg"
+background-image = "octocat.jpg"
 background-blur = true
 background-opacity = 0.2
 
