@@ -28,6 +28,27 @@ return {
         end,
         desc = "Metals hover worksheet",
       },
+      {
+        "<localleader>ia",
+        function()
+          vim.lsp.buf.execute_command({ command = "metals.toggle-implicit-arguments", arguments = {} })
+        end,
+        desc = "Toggle implicit arguments",
+      },
+      {
+        "<localleader>it",
+        function()
+          require("metals").toggle_setting("showInferredType")
+        end,
+        desc = "Toggle inferred types",
+      },
+      {
+        "<localleader>ic",
+        function()
+          require("metals").toggle_setting("showImplicitConversionsAndClasses")
+        end,
+        desc = "Toggle implicit conversions",
+      },
     },
     ft = { "scala", "sbt", "java" },
     opts = function()
@@ -37,8 +58,8 @@ return {
 
       metals_config.settings = {
         verboseCompilation = true,
-        showImplicitArguments = false,
-        showImplicitConversionsAndClasses = false,
+        showImplicitArguments = true,
+        showImplicitConversionsAndClasses = true,
         showInferredType = true,
         superMethodLensesEnabled = true,
         excludedPackages = {
