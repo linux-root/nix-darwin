@@ -31,7 +31,7 @@ return {
       {
         "<localleader>ia",
         function()
-          vim.lsp.buf.execute_command({ command = "metals.toggle-implicit-arguments", arguments = {} })
+          require("metals").toggle_setting("showImplicitArguments")
         end,
         desc = "Toggle implicit arguments",
       },
