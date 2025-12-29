@@ -124,6 +124,25 @@
         rm -f -- "$tmp"
       }
 
+      function kport(){
+        if [ -z "$1" ]; then
+          echo "Usage: kport <port>"
+          return 1
+        fi
+        local port="$1"
+        # Validate port is a number in range 1000-65535
+        if ! [[ "$port" =~ ^[0-9]+$ ]] || [ "$port" -lt 1000 ] || [ "$port" -gt 65535 ]; then
+          echo "Error: port must be between 1000 and 65535"
+          return 1
+        fi
+        local pid=$(lsof -ti :"$port")
+        if [ -z "$pid" ]; then
+          echo "No process found on port $port"
+          return 1
+        fi
+        kill "$pid" && echo "Killed process $pid on port $port"
+      }
+
       zle -N copy_last_command
       bindkey '^Xy' copy_last_command
 
