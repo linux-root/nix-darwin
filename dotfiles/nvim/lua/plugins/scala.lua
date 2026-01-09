@@ -1,4 +1,10 @@
 return {
+  recommended = function()
+    return LazyVim.extras.wants({
+      ft = "scala",
+      root = { "build.sbt", "build.sc", "build.gradle", "pom.xml" },
+    })
+  end,
   {
     "nvim-treesitter/nvim-treesitter",
     opts = { ensure_installed = { "scala" } },
@@ -11,7 +17,7 @@ return {
         function()
           require("metals").commands()
         end,
-        ft = { "scala", "sbt", "java", "sc" },
+        ft = { "scala", "sbt", "java" },
         desc = "Metals commands",
       },
       {
@@ -57,10 +63,10 @@ return {
       metals_config.init_options.statusBarProvider = "off"
 
       metals_config.settings = {
-        verboseCompilation = true,
-        showImplicitArguments = true,
-        showImplicitConversionsAndClasses = true,
-        showInferredType = true,
+        verboseCompilation = false,
+        showImplicitArguments = false,
+        showImplicitConversionsAndClasses = false,
+        showInferredType = false,
         superMethodLensesEnabled = true,
         excludedPackages = {
           "akka.actor.typed.javadsl",
