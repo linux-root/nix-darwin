@@ -35,6 +35,7 @@
 
   home.sessionPath = [
     "$HOME/.local/bin"
+    "$HOME/.bun/bin"
   ];
 
   programs.zsh = {
