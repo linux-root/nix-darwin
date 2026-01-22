@@ -63,6 +63,8 @@ return {
       metals_config.init_options.statusBarProvider = "off"
 
       metals_config.settings = {
+        serverVersion = "2.0.0-M7",
+        serverProperties = { "-Xmx4g" },
         verboseCompilation = false,
         showImplicitArguments = false,
         showImplicitConversionsAndClasses = false,
