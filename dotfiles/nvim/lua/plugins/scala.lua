@@ -63,9 +63,11 @@ return {
       metals_config.init_options.statusBarProvider = "off"
 
       metals_config.settings = {
-        serverVersion = "2.0.0-M7",
+        -- serverVersion = "2.0.0-M7",
         defaultBspToBuildTool = true,
         startMcpServer = true,
+        mcpClient = "claude",
+        serverVersion = "latest.snapshot",
         serverProperties = { "-Xmx4g" },
         verboseCompilation = false,
         showImplicitArguments = false,
