@@ -64,6 +64,8 @@ return {
 
       metals_config.settings = {
         serverVersion = "2.0.0-M7",
+        defaultBspToBuildTool = true,
+        startMcpServer = true,
         serverProperties = { "-Xmx4g" },
         verboseCompilation = false,
         showImplicitArguments = false,
