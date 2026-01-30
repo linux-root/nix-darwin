@@ -8,18 +8,23 @@ background-opacity = 0.2
 
 #font-family ="Dank Mono"
 
-font-family = "Cascadia Code"
+font-family = "Cascadia Code NF"
 font-family-italic = "Maple Mono"
 font-family-bold-italic = "Maple Mono"
 font-size = 17
 
 custom-shader=shaders/cursor_smear_fade.glsl
 
-# Mouse
+copy-on-select = clipboard
 mouse-hide-while-typing = true
 
 macos-option-as-alt = left
+
 keybind = alt+left=unbind
 keybind = alt+right=unbind
+keybind = ctrl+shift+h=goto_split:left
+keybind = ctrl+shift+j=goto_split:bottom
+keybind = ctrl+shift+k=goto_split:top
+keybind = ctrl+shift+l=goto_split:right
 fullscreen = true
 keybind = shift+enter=text:\x1b\r
