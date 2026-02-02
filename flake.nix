@@ -101,8 +101,8 @@
       ];
     };
 
-    # Alternative standalone config for different architectures
-    homeConfigurations."w47s0n@ubuntu-arm" = home-manager.lib.homeManagerConfiguration {
+    # Raspberry Pi 5 configuration (aarch64-linux)
+    homeConfigurations."w47s0n@pi5" = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.aarch64-linux;
       modules = [
         ./home/linux.nix
