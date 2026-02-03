@@ -16,9 +16,14 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    claude-code-nix = {
+          url = "github:sadjow/claude-code-nix";
+          inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager }:
+  outputs = { self, nix-darwin, nixpkgs, home-manager, claude-code-nix }:
   let
     # Platform-specific usernames
     macosUsername = "kurro";
@@ -60,6 +65,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = { inherit claude-code-nix; };
           home-manager.users.${macosUsername} = { pkgs, ... }: {
             imports = [ ./home/darwin.nix ];
             home.username = macosUsername;
@@ -92,6 +98,7 @@
     # $ home-manager switch --flake .#w47s0n@ubuntu
     homeConfigurations."w47s0n@ubuntu" = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      extraSpecialArgs = { inherit claude-code-nix; };
       modules = [
         ./home/linux.nix
         {
@@ -104,6 +111,7 @@
     # Raspberry Pi 5 configuration (aarch64-linux)
     homeConfigurations."w47s0n@pi5" = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.aarch64-linux;
+      extraSpecialArgs = { inherit claude-code-nix; };
       modules = [
         ./home/linux.nix
         {

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, claude-code-nix, ... }:
 
 {
   # This is shared configuration that works on all platforms:
@@ -24,6 +24,7 @@
     poppler
     yazi
     btop
+    claude-code-nix.packages.${pkgs.system}.default
   ];
 
   # Environment variables (cross-platform)
