@@ -13,7 +13,14 @@ font-family-italic = "Maple Mono"
 font-family-bold-italic = "Maple Mono"
 font-size = 17
 
-custom-shader=shaders/cursor_smear_fade.glsl
+# custom-shader=shaders/just-snow.glsl
+# custom-shader=shaders/starfield.glsl
+font-thicken = true
+
+macos-icon = custom-style
+macos-icon-frame = plastic
+macos-icon-ghost-color = FFFFFF
+macos-icon-screen-color = 000000
 
 copy-on-select = clipboard
 mouse-hide-while-typing = true
